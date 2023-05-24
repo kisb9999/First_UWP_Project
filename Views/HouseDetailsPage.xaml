@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="Homework.Views.HouseDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Homework.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:vm="using:Homework.ViewModels"
+    xmlns:local1="using:Homework.Models"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:DetailsPageViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
+
+    <Grid Padding="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Click="BackToMain_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="20" Height="70" Width="200" Background="Black" Foreground="White" Margin="0,-24,-29,0" Grid.Column="1">Back To Main Page</Button>
+
+        <StackPanel>
+            <TextBlock Text="Name: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding House.name}"/>
+
+            <TextBlock Text="Coat of Arms: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding House.coatOfArms}"/>
+
+            <TextBlock Text="Lord: " FontWeight="Bold"/>
+            <ListView ItemsSource="{Binding CharacterList}"  Width="300" Height="50" IsItemClickEnabled="True" ItemClick="OnItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate  x:DataType="local1:CharacterObject">
+                        <StackPanel>
+                            <TextBlock Text="{Binding name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <TextBlock Text="Region: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding House.region}"/>
+
+            <TextBlock Text="Words of the house: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding House.words}"/>
+
+            <TextBlock Text="Titles: " FontWeight="Bold"/>
+            <ListView ItemsSource="{Binding House.titles}"/>
+
+            <TextBlock Text="Seats: " FontWeight="Bold"/>
+            <ListView ItemsSource="{Binding House.seats}"/>
+
+            <TextBlock Text="Founded: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding House.founded}"/>
+
+            <TextBlock Text="Died out: " FontWeight="Bold"/>
+            <TextBlock Text="{Binding House.diedOut}"/>
+
+            <TextBlock Text="Weapons: " FontWeight="Bold"/>
+            <ListView ItemsSource="{Binding House.ancestralWeapons}"/>
+
+        </StackPanel>
+    </Grid>
+</Page>
